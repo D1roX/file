@@ -25,6 +25,17 @@ def create_package(msg_id, x, y, distance):
     return package
 
 
+def read_package(package):
+    print(
+        f'msg_id: {int.from_bytes(package[:5])}\n'
+        f'признак включения: {int.from_bytes(package[5:6])}\n'
+        f'x: {int.from_bytes(package[6:10])}\n'
+        f'y: {int.from_bytes(package[10:14])}\n'
+        f'дистанция: {int.from_bytes(package[14:18]) / 2 ** 10}\n'
+        f'контрольная сумма: {int.from_bytes(package[18:])}\n\n'
+    )
+
+
 def run():
     msg_id = b'\x55\xDD\x15\x16\x17'
 
